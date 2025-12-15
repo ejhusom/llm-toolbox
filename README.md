@@ -27,3 +27,12 @@ Generate a commit message based on staged changes, and open it in the commit edi
 git commit -m "$(git diff --staged | llm "Write a conventional commit message (type: description). Be specific about what changed and why.")" -e
 ```
 
+## Other examples
+
+```bash
+echo ”I have a research idea to train a massive multimodal LLM on all scientific papers to automatically generate novel research hypotheses" | \
+  llm -m llama3.2 -s "Critique harshly: flaws, concerns, rating. Format: 'IDEA: [original] | CRITIQUE: [critique]'" --no-stream | \
+  llm -m llama3.2 -s "Improve this proposal fixing all issues. Keep motivation, fix problems." --no-stream | \
+  tee improved_idea.txt
+```
+
